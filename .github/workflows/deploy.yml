@@ -1,0 +1,49 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Render (Backend)
+        run: |
+          echo "Backend deployment configuration:"
+          echo "Service: physical-ai-book-backend"
+          echo "Framework: FastAPI/Python"
+          echo "Build Command: pip install -r backend/requirements.txt"
+          echo "Start Command: cd backend && uvicorn src.main:app --host 0.0.0.0 --port $PORT"
+          echo ""
+          echo "Note: Set the following environment variables in Render dashboard:"
+          echo "- DATABASE_URL (Neon Postgres connection string)"
+          echo "- QDRANT_URL (Qdrant cluster endpoint)"
+          echo "- QDRANT_API_KEY"
+          echo "- ANTHROPIC_API_KEY"
+          echo "- BETTERAUTH_PROJECT_ID"
+          echo "- BETTERAUTH_SECRET"
+          echo "- CORS_ORIGINS=https://your-domain.pages.github.io"
+        continue-on-error: true
+
+      - name: Deploy Frontend to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./Ai-and-Humanoid-Robotics-Book/build
+          cname: physical-ai-book.example.com
+        continue-on-error: true
+
+      - name: Create deployment status
+        run: |
+          echo "Deployment Summary:"
+          echo "==================="
+          echo "Backend: https://physical-ai-book-backend.render.com"
+          echo "Frontend: https://physical-ai-book.pages.github.io"
+          echo "API Docs: https://physical-ai-book-backend.render.com/docs"

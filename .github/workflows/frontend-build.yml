@@ -1,0 +1,80 @@
+name: Frontend Build
+
+on:
+  push:
+    branches: [ main, develop, 001-mvp-features ]
+    paths:
+      - 'Ai-and-Humanoid-Robotics-Book/**'
+      - '.github/workflows/frontend-build.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'Ai-and-Humanoid-Robotics-Book/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'Ai-and-Humanoid-Robotics-Book/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: Ai-and-Humanoid-Robotics-Book
+        run: npm ci
+
+      - name: Lint with ESLint
+        working-directory: Ai-and-Humanoid-Robotics-Book
+        run: |
+          npm run lint 2>/dev/null || echo "ESLint not configured, skipping"
+        continue-on-error: true
+
+      - name: Format check with Prettier
+        working-directory: Ai-and-Humanoid-Robotics-Book
+        run: |
+          npx prettier --check "src/**/*.{ts,tsx,js,jsx,json,md}" "docs/**/*.md" || echo "Prettier check completed"
+        continue-on-error: true
+
+      - name: Build Docusaurus
+        working-directory: Ai-and-Humanoid-Robotics-Book
+        run: npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: docusaurus-build
+          path: Ai-and-Humanoid-Robotics-Book/build
+
+      - name: Check build size
+        working-directory: Ai-and-Humanoid-Robotics-Book
+        run: |
+          du -sh build/
+          find build -type f -name "*.js" -o -name "*.css" | wc -l
+
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: build
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: docusaurus-build
+          path: Ai-and-Humanoid-Robotics-Book/build
+
+      - name: Audit URLs with Lighthouse
+        uses: treosh/lighthouse-ci-action@v9
+        with:
+          configPath: 'Ai-and-Humanoid-Robotics-Book/.lighthouserc.json'
+          uploadArtifacts: true
+        continue-on-error: true

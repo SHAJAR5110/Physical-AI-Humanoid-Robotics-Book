@@ -21,13 +21,13 @@
 
 Project initialization and shared infrastructure setup.
 
-- [ ] T001 Create repository directory structure (backend/, frontend/, docs/, tests/, .github/)
-- [ ] T002 Initialize Python backend project: `pip init`, requirements.txt (FastAPI, SQLAlchemy, Pydantic, python-dotenv, pytest)
-- [ ] T003 Initialize Node.js/Docusaurus frontend project: `npx create-docusaurus@latest`, Tailwind CSS setup
-- [ ] T004 Create .env.example template (API keys, database URLs, secrets placeholders)
-- [ ] T005 Set up GitHub Actions CI/CD: backend-tests.yml, frontend-build.yml, deploy.yml
-- [ ] T006 Initialize Git pre-commit hooks: Black (Python), Prettier (JS), ruff linting
-- [ ] T007 Create docker-compose.yml for local development (PostgreSQL, Qdrant, optional Redis)
+- [x] T001 Create repository directory structure (backend/, frontend/, docs/, tests/, .github/)
+- [x] T002 Initialize Python backend project: `pip init`, requirements.txt (FastAPI, SQLAlchemy, Pydantic, python-dotenv, pytest)
+- [x] T003 Initialize Node.js/Docusaurus frontend project: `npx create-docusaurus@latest`, Tailwind CSS setup
+- [x] T004 Create .env.example template (API keys, database URLs, secrets placeholders)
+- [x] T005 Set up GitHub Actions CI/CD: backend-tests.yml, frontend-build.yml, deploy.yml
+- [x] T006 Initialize Git pre-commit hooks: Black (Python), Prettier (JS), ruff linting
+- [x] T007 Create docker-compose.yml for local development (PostgreSQL, Qdrant, optional Redis)
 
 ---
 
