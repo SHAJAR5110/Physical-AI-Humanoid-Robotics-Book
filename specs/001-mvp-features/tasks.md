@@ -54,12 +54,12 @@ Essential services and APIs required before user story implementation.
 
 **Tasks**:
 
-- [ ] T016 [US1] Author Chapter 1: Introduction to Physical AI (frontend/docs/intro.md, ~5K words)
-- [ ] T017 [US1] Author Chapter 2: ROS 2 Fundamentals (frontend/docs/ros2.md, ~5K words, include code examples)
-- [ ] T018 [US1] Author Chapter 3: Gazebo Simulation (frontend/docs/gazebo.md, ~5K words, URDF/SDF examples)
-- [ ] T019 [US1] Author Chapter 4: NVIDIA Isaac Platform (frontend/docs/isaac.md, ~5K words, Isaac examples)
-- [ ] T020 [US1] Author Chapter 5: Vision-Language-Action Models (frontend/docs/vla.md, ~5K words)
-- [ ] T021 [US1] Author Chapter 6: Capstone Project (frontend/docs/capstone.md, ~5K words, full project example)
+- [x] T016 [US1] Author Chapter 1: Introduction to Physical AI (frontend/docs/intro.md, ~5K words)
+- [x] T017 [US1] Author Chapter 2: ROS 2 Fundamentals (frontend/docs/ros2.md, ~5K words, include code examples)
+- [x] T018 [US1] Author Chapter 3: Gazebo Simulation (frontend/docs/gazebo.md, ~5K words, URDF/SDF examples)
+- [x] T019 [US1] Author Chapter 4: NVIDIA Isaac Platform (frontend/docs/isaac.md, ~5K words, Isaac examples)
+- [x] T020 [US1] Author Chapter 5: Vision-Language-Action Models (frontend/docs/vla.md, ~5K words)
+- [x] T021 [US1] Author Chapter 6: Capstone Project (frontend/docs/capstone.md, ~5K words, full project example)
 - [ ] T022 Create CodeBlock component with syntax highlighting in frontend/src/components/CodeBlock.tsx (Prism or highlight.js)
 - [ ] T023 Configure Docusaurus Markdown plugins for code highlighting in frontend/docusaurus.config.js
 - [ ] T024 Implement chapter navigation sidebar in frontend/src/components/ChapterNav.tsx (links to all 6 chapters)
@@ -79,14 +79,14 @@ Essential services and APIs required before user story implementation.
 
 **Tasks**:
 
-- [ ] T030 Create User model in backend/src/models/user.py (id, email, name, os, gpu, experience_level, robotics_background, created_at, updated_at)
-- [ ] T031 Create Session model in backend/src/models/session.py (session_id, user_id, token_hash, expires_at, created_at)
-- [ ] T032 Create Alembic migrations in backend/src/db/migrations/ for User and Session tables
-- [ ] T033 Implement UserService in backend/src/services/user_service.py (create, read, update, delete operations)
-- [ ] T034 Implement SessionService in backend/src/services/session_service.py (create, validate, expire sessions)
-- [ ] T035 Integrate BetterAuth in backend/src/services/auth_service.py (signup, signin, signout, token validation)
-- [ ] T036 [P] Create Auth API routes in backend/src/api/routes/auth.py (POST /signup, POST /signin, POST /signout, GET /profile)
-- [ ] T037 [P] Implement BetterAuth middleware in backend/src/api/middleware.py (protect endpoints, inject user context)
+- [x] T030 Create User model in backend/src/models/user.py (id, email, name, os, gpu, experience_level, robotics_background, created_at, updated_at)
+- [x] T031 Create Session model in backend/src/models/session.py (session_id, user_id, token_hash, expires_at, created_at)
+- [x] T032 Create Alembic migrations in backend/src/db/migrations/ for User and Session tables
+- [x] T033 Implement UserService in backend/src/services/user_service.py (create, read, update, delete operations)
+- [x] T034 Implement SessionService in backend/src/services/session_service.py (create, validate, expire sessions)
+- [x] T035 Integrate BetterAuth in backend/src/services/auth_service.py (signup, signin, signout, token validation)
+- [x] T036 [P] Create Auth API routes in backend/src/api/routes/auth.py (POST /signup, POST /signin, POST /signout, GET /profile)
+- [x] T037 [P] Implement BetterAuth middleware in backend/src/api/middleware.py (protect endpoints, inject user context)
 - [ ] T038 Create SignUp form component in frontend/src/components/SignUpForm.tsx (email, password, OS dropdown, GPU dropdown, experience dropdown, robotics background textarea)
 - [ ] T039 Create SignIn form component in frontend/src/components/SignInForm.tsx (email, password fields)
 - [ ] T040 Create UserProfile component in frontend/src/components/UserProfile.tsx (display user background, edit button)

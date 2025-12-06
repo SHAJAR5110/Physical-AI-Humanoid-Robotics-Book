@@ -121,13 +121,10 @@ async def health_check():
     }
 
 
-# TODO: Import and include routers
-# from api.routes import auth, chapters, personalize, translate, chat
-# app.include_router(auth.router, prefix=f"{settings.api_prefix}/auth", tags=["auth"])
-# app.include_router(chapters.router, prefix=f"{settings.api_prefix}/chapters", tags=["chapters"])
-# app.include_router(personalize.router, prefix=f"{settings.api_prefix}", tags=["personalization"])
-# app.include_router(translate.router, prefix=f"{settings.api_prefix}", tags=["translation"])
-# app.include_router(chat.router, prefix=f"{settings.api_prefix}", tags=["chat"])
+# Import and include routers
+from api.routes import auth
+
+app.include_router(auth.router, tags=["authentication"])
 
 
 if __name__ == "__main__":
