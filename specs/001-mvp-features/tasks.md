@@ -35,7 +35,7 @@ Project initialization and shared infrastructure setup.
 
 Essential services and APIs required before user story implementation.
 
-- [ ] T008 [P] Set up Neon Postgres connection in backend/src/db/connection.py (SQLAlchemy)
+- [x] T008 [P] Set up Neon Postgres connection in backend/src/db/connection.py (SQLAlchemy)
 - [ ] T009 [P] Set up Qdrant client in backend/src/db/qdrant.py (vector store connection)
 - [ ] T010 Create SQLAlchemy Base and session management in backend/src/db/__init__.py
 - [ ] T011 Implement BetterAuth integration skeleton in backend/src/services/auth_service.py (interface stubs)

@@ -84,15 +84,37 @@ async def health_check():
     Verifies database, Qdrant, and Claude API connectivity.
     """
     from db.connection import health_check as db_health_check
+    from db import get_qdrant
 
     db_status = db_health_check()
 
+    # Check Qdrant
+    try:
+        qdrant = get_qdrant()
+        qdrant_status = qdrant.health_check()
+    except Exception as e:
+        logger.error(f"Qdrant health check failed: {e}")
+        qdrant_status = False
+
+    # Check Claude API (simple test)
+    claude_status = True
+    try:
+        if not settings.anthropic_api_key:
+            claude_status = False
+    except Exception as e:
+        logger.error(f"Claude API check failed: {e}")
+        claude_status = False
+
+    # Determine overall status
+    all_ok = db_status and qdrant_status and claude_status
+    status = "ok" if all_ok else ("degraded" if (db_status or qdrant_status) else "down")
+
     return {
-        "status": "ok" if db_status else "degraded",
+        "status": status,
         "services": {
             "database": "ok" if db_status else "down",
-            "qdrant": "ok",  # TODO: Implement Qdrant health check
-            "claude_api": "ok",  # TODO: Implement Claude API health check
+            "qdrant": "ok" if qdrant_status else "down",
+            "claude_api": "ok" if claude_status else "down",
         },
         "version": settings.version,
         "environment": settings.environment,
