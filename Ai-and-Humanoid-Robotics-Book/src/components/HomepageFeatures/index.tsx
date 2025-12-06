@@ -14,7 +14,7 @@ type ChapterItem = {
 
 const ChapterList: ChapterItem[] = [
   {
-    id: '01_intro',
+    id: 'intro',
     number: 1,
     title: 'Introduction to Physical AI',
     description: (
@@ -27,7 +27,7 @@ const ChapterList: ChapterItem[] = [
     icon: '🤖',
   },
   {
-    id: '02_ros2',
+    id: 'ros2',
     number: 2,
     title: 'ROS 2 Fundamentals',
     description: (
@@ -39,7 +39,7 @@ const ChapterList: ChapterItem[] = [
     icon: '🔗',
   },
   {
-    id: '03_gazebo',
+    id: 'gazebo',
     number: 3,
     title: 'Gazebo Simulation',
     description: (
@@ -51,7 +51,7 @@ const ChapterList: ChapterItem[] = [
     icon: '🌍',
   },
   {
-    id: '04_isaac',
+    id: 'isaac',
     number: 4,
     title: 'NVIDIA Isaac Platform',
     description: (
@@ -64,7 +64,7 @@ const ChapterList: ChapterItem[] = [
     icon: '🎮',
   },
   {
-    id: '05_vla',
+    id: 'vla',
     number: 5,
     title: 'Vision-Language-Action Models',
     description: (
@@ -77,7 +77,7 @@ const ChapterList: ChapterItem[] = [
     icon: '🧠',
   },
   {
-    id: '06_capstone',
+    id: 'capstone',
     number: 6,
     title: 'Capstone Project',
     description: (

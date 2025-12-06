@@ -108,15 +108,15 @@ const config: Config = {
           items: [
             {
               label: 'Ch 1: Physical AI Fundamentals',
-              to: '/docs/01_intro',
+              to: '/docs/intro',
             },
             {
               label: 'Ch 2: ROS 2 Fundamentals',
-              to: '/docs/02_ros2',
+              to: '/docs/ros2',
             },
             {
               label: 'Ch 3: Gazebo Simulation',
-              to: '/docs/03_gazebo',
+              to: '/docs/gazebo',
             },
           ],
         },
@@ -125,15 +125,15 @@ const config: Config = {
           items: [
             {
               label: 'Ch 4: NVIDIA Isaac',
-              to: '/docs/04_isaac',
+              to: '/docs/isaac',
             },
             {
               label: 'Ch 5: Vision-Language-Action',
-              to: '/docs/05_vla',
+              to: '/docs/vla',
             },
             {
               label: 'Ch 6: Capstone Project',
-              to: '/docs/06_capstone',
+              to: '/docs/capstone',
             },
           ],
         },

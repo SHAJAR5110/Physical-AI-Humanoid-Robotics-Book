@@ -50,7 +50,7 @@ export default function AuthPage(): React.ReactNode {
                 onSignUpClick={() => setAuthMode('signup')}
                 onSuccess={() => {
                   // Redirect to book after successful signin
-                  window.location.href = '/docs/01_intro';
+                  window.location.href = '/docs/intro';
                 }}
               />
             ) : (
@@ -58,7 +58,7 @@ export default function AuthPage(): React.ReactNode {
                 onSignInClick={() => setAuthMode('signin')}
                 onSuccess={() => {
                   // Redirect to book after successful signup
-                  window.location.href = '/docs/01_intro';
+                  window.location.href = '/docs/intro';
                 }}
               />
             )}
