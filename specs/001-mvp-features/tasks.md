@@ -87,12 +87,12 @@ Essential services and APIs required before user story implementation.
 - [x] T035 Integrate BetterAuth in backend/src/services/auth_service.py (signup, signin, signout, token validation)
 - [x] T036 [P] Create Auth API routes in backend/src/api/routes/auth.py (POST /signup, POST /signin, POST /signout, GET /profile)
 - [x] T037 [P] Implement BetterAuth middleware in backend/src/api/middleware.py (protect endpoints, inject user context)
-- [ ] T038 Create SignUp form component in frontend/src/components/SignUpForm.tsx (email, password, OS dropdown, GPU dropdown, experience dropdown, robotics background textarea)
-- [ ] T039 Create SignIn form component in frontend/src/components/SignInForm.tsx (email, password fields)
-- [ ] T040 Create UserProfile component in frontend/src/components/UserProfile.tsx (display user background, edit button)
-- [ ] T041 Implement useAuth hook in frontend/src/hooks/useAuth.ts (login, logout, user state management)
-- [ ] T042 Add auth pages to Docusaurus in frontend/src/pages/signup.tsx and frontend/src/pages/signin.tsx
-- [ ] T043 [P] Implement session storage in frontend/localStorage) or cookies (secure token handling)
+- [x] T038 Create SignUp form component in frontend/src/components/SignUpForm.tsx (email, password, OS dropdown, GPU dropdown, experience dropdown, robotics background textarea)
+- [x] T039 Create SignIn form component in frontend/src/components/SignInForm.tsx (email, password fields)
+- [x] T040 Create UserProfile component in frontend/src/components/UserProfile.tsx (display user background, edit button)
+- [x] T041 Implement useAuth hook in frontend/src/hooks/useAuth.ts (login, logout, user state management)
+- [x] T042 Add auth pages to Docusaurus in frontend/src/pages/signup.tsx and frontend/src/pages/signin.tsx
+- [x] T043 [P] Implement session storage in frontend/localStorage) or cookies (secure token handling)
 - [ ] T044 Test auth flow: Signup → auto-login → logout → signin → profile verification (manual E2E)
 - [ ] T045 Test duplicate email rejection (attempt signup with existing email, verify error)
 - [ ] T046 Test session expiry (wait 24 hours or mock time, verify re-auth required)
