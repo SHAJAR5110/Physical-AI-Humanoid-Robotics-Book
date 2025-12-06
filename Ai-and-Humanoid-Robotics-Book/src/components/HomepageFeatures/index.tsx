@@ -1,57 +1,115 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
+import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
-type FeatureItem = {
+type ChapterItem = {
+  id: string;
+  number: number;
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
   description: ReactNode;
+  icon: string;
 };
 
-const FeatureList: FeatureItem[] = [
+const ChapterList: ChapterItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    id: '01_intro',
+    number: 1,
+    title: 'Introduction to Physical AI',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Fundamentals of Physical AI, why it matters, key technologies (perception,
+        reasoning, action), and the evolution of robotics from mechanical arms to
+        intelligent autonomous systems.
       </>
     ),
+    icon: '🤖',
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    id: '02_ros2',
+    number: 2,
+    title: 'ROS 2 Fundamentals',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Robot Operating System 2 architecture, nodes, topics, services, actions,
+        and URDF. Build distributed robot systems with DDS middleware.
       </>
     ),
+    icon: '🔗',
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    id: '03_gazebo',
+    number: 3,
+    title: 'Gazebo Simulation',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Physics simulation with accurate dynamics, sensor simulation (camera, LiDAR,
+        IMU), SDF format, plugins, and testing algorithms before hardware deployment.
       </>
     ),
+    icon: '🌍',
+  },
+  {
+    id: '04_isaac',
+    number: 4,
+    title: 'NVIDIA Isaac Platform',
+    description: (
+      <>
+        Professional robotics platform with Isaac Sim (digital twins), Isaac GEM
+        (manipulation skills), motion planning, and reinforcement learning in
+        photorealistic environments.
+      </>
+    ),
+    icon: '🎮',
+  },
+  {
+    id: '05_vla',
+    number: 5,
+    title: 'Vision-Language-Action Models',
+    description: (
+      <>
+        Multimodal AI for robots combining computer vision, language understanding,
+        and motor control. Training, fine-tuning, and deploying VLAs on real hardware
+        with Claude API integration.
+      </>
+    ),
+    icon: '🧠',
+  },
+  {
+    id: '06_capstone',
+    number: 6,
+    title: 'Capstone Project',
+    description: (
+      <>
+        End-to-end robotic system integrating perception, planning, and control.
+        Hardware setup, software stack, integration tests, deployment checklist,
+        and real-world implementation patterns.
+      </>
+    ),
+    icon: '🚀',
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Chapter({id, number, title, description, icon}: ChapterItem) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
-      </div>
+      <Link to={`/docs/${id}`} className={styles.chapterCard}>
+        <div className="text--center padding-top--lg">
+          <div style={{fontSize: '48px', marginBottom: '10px'}}>{icon}</div>
+          <Heading as="h3">
+            Chapter {number}
+            <br />
+            {title}
+          </Heading>
+        </div>
+        <div className="text--center padding-horiz--md padding-bottom--lg">
+          <p>{description}</p>
+          <p style={{marginTop: '15px', fontWeight: 'bold', color: '#0ea5e9'}}>
+            Read Chapter {number} →
+          </p>
+        </div>
+      </Link>
     </div>
   );
 }
@@ -60,9 +118,16 @@ export default function HomepageFeatures(): ReactNode {
   return (
     <section className={styles.features}>
       <div className="container">
+        <div className="text--center margin-bottom--xl">
+          <Heading as="h2">📖 Complete 6-Chapter Textbook</Heading>
+          <p style={{fontSize: '18px', marginTop: '10px'}}>
+            From Physical AI fundamentals to end-to-end robotic systems.
+            15,000+ words with 30+ code examples.
+          </p>
+        </div>
         <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
+          {ChapterList.map((props, idx) => (
+            <Chapter key={idx} {...props} />
           ))}
         </div>
       </div>

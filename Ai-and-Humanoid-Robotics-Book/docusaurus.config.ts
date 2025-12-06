@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Physical AI & Humanoid Robotics',
+  tagline: 'Complete guide to building intelligent robots with ROS 2, Gazebo, and AI',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -75,9 +75,9 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'My Site',
+      title: 'Physical AI Book',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Physical AI Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -85,11 +85,10 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Read the Book',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/SHAJAR5110/Physical-AI-Humanoid-Robotics-Book',
           label: 'GitHub',
           position: 'right',
         },
@@ -99,28 +98,36 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Chapters',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'Ch 1: Physical AI Fundamentals',
+              to: '/docs/01_intro',
+            },
+            {
+              label: 'Ch 2: ROS 2 Fundamentals',
+              to: '/docs/02_ros2',
+            },
+            {
+              label: 'Ch 3: Gazebo Simulation',
+              to: '/docs/03_gazebo',
             },
           ],
         },
         {
-          title: 'Community',
+          title: 'Advanced Topics',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Ch 4: NVIDIA Isaac',
+              to: '/docs/04_isaac',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: 'Ch 5: Vision-Language-Action',
+              to: '/docs/05_vla',
             },
             {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: 'Ch 6: Capstone Project',
+              to: '/docs/06_capstone',
             },
           ],
         },
@@ -128,17 +135,17 @@ const config: Config = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
+              label: 'GitHub Repository',
+              href: 'https://github.com/SHAJAR5110/Physical-AI-Humanoid-Robotics-Book',
             },
             {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              label: 'Report an Issue',
+              href: 'https://github.com/SHAJAR5110/Physical-AI-Humanoid-Robotics-Book/issues',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
