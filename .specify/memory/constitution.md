@@ -23,7 +23,7 @@ High-quality, canonical educational material is the foundation of the Physical A
 - Examples must be runnable or clearly marked as pseudocode
 - Explanations must connect concepts to learner goals
 
-**Rationale**: The hackathon judges and long-term maintainers (Panaversity) will evaluate educational quality above all. Weak content undermines the entire project regardless of technical polish.
+**Rationale**: The hackathon judges and long-term maintainers will evaluate educational quality above all. Weak content undermines the entire project regardless of technical polish.
 
 ---
 
@@ -37,7 +37,7 @@ All tools, agents, and components must be designed for modular reuse across the 
 - Agents compose skills; agents themselves should be reusable (tutoring, researching, content-generation)
 - No skill or agent contains hardcoded feature-specific logic
 
-**Rationale**: Reusability reduces duplication, speeds up development within the hackathon sprint, and leaves a maintainable codebase for Panaversity. Skills are Panaversity's long-term asset.
+**Rationale**: Reusability reduces duplication, speeds up development within the hackathon sprint, and leaves a maintainable codebase.
 
 ---
 
@@ -66,7 +66,7 @@ The book must be accessible to Urdu-speaking learners and all learners regardles
 - Mobile-responsive Docusaurus design
 - Links to simulations external or via notebook runners (not hosted locally in MVP)
 
-**Rationale**: Urdu accessibility opens the project to Panaversity's regional learner base. Clear UX ensures adoption during the hackathon demo.
+**Rationale**: Urdu accessibility opens the project regional learner base. Clear UX ensures adoption during the hackathon demo.
 
 ---
 
@@ -81,7 +81,7 @@ User data is protected and collected minimally. Authentication is delegated to B
 - No third-party analytics (except minimal error logging for ops)
 - API keys and secrets stored in `.env`; never committed
 
-**Rationale**: Judges and Panaversity expect privacy-first practices. Learner trust is paramount. BetterAuth is battle-tested and reduces surface area for security bugs.
+**Rationale**: Judges expect privacy-first practices. Learner trust is paramount. BetterAuth is battle-tested and reduces surface area for security bugs.
 
 ---
 
@@ -98,7 +98,7 @@ User data is protected and collected minimally. Authentication is delegated to B
 - **Hosting**: Vercel (frontend), Railway or Heroku (backend, free tier)
 - **Deployment**: GitHub Actions (CI/CD for content builds and API)
 
-**Rationale**: Stack balances ease-of-use, free/affordable hosting for hackathon, and alignment with Panaversity's future operations.
+**Rationale**: Stack balances ease-of-use, free/affordable hosting for hackathon, and alignment with  future operations.
 
 ### RAG Chatbot Architecture
 
@@ -183,7 +183,7 @@ All work follows Spec-Driven Development methodology as outlined in CLAUDE.md:
 
 - **Pre-merge**: All PRs checked against current constitution (reusability, security, quality gates)
 - **Quarterly**: Team reviews constitution against realized practices; amends if needed
-- **Long-term**: Panaversity maintainers inherit constitution as part of project handoff
+- **Long-term**: Maintainers inherit constitution as part of project handoff
 
 ### Version Policy
 
