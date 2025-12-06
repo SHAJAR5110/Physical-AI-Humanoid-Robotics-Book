@@ -36,11 +36,11 @@ Project initialization and shared infrastructure setup.
 Essential services and APIs required before user story implementation.
 
 - [x] T008 [P] Set up Neon Postgres connection in backend/src/db/connection.py (SQLAlchemy)
-- [ ] T009 [P] Set up Qdrant client in backend/src/db/qdrant.py (vector store connection)
-- [ ] T010 Create SQLAlchemy Base and session management in backend/src/db/__init__.py
-- [ ] T011 Implement BetterAuth integration skeleton in backend/src/services/auth_service.py (interface stubs)
+- [x] T009 [P] Set up Qdrant client in backend/src/db/qdrant.py (vector store connection)
+- [x] T010 Create SQLAlchemy Base and session management in backend/src/db/__init__.py
+- [x] T011 Implement BetterAuth integration skeleton in backend/src/services/auth_service.py (interface stubs)
 - [ ] T012 Create FastAPI app entry point with middleware in backend/src/main.py (CORS, error handling, logging)
-- [ ] T013 Set up Docusaurus theme and navigation in frontend/docusaurus.config.js and frontend/sidebars.js
+- [x] T013 Set up Docusaurus theme and navigation in frontend/docusaurus.config.js and frontend/sidebars.js
 - [ ] T014 Create React layout component in frontend/src/components/Layout.tsx (header, sidebar, footer)
 - [ ] T015 [P] Initialize Docusaurus docs structure in frontend/docs/ with placeholder chapters
 
