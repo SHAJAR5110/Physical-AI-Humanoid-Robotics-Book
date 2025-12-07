@@ -208,3 +208,123 @@ Wait for consent; never auto-create ADRs. Group related decisions (stacks, authe
 
 ## Code Standards
 See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
+
+---
+
+## 🎨 Project Modernization Updates (December 2025)
+
+### Overview
+Complete modernization of the Physical AI & Humanoid Robotics book project including open-source restructuring, landing page redesign, and professional branding.
+
+### Key Changes & Updates
+
+#### 1. **Open-Source Repository Structure**
+- **Renamed**: `Ai-and-Humanoid-Robotics-Book/` → `book-source/`
+- **Added**: MIT License to `book-source/LICENSE`
+- **Updated**: Root README with new directory structure
+- **Documentation**: Professional README in book-source/
+- **Files Changed**: 37 files with 31,817 insertions
+- **Git Commit**: `802ed62` (refactor: reorganize book platform to open-source structure)
+
+#### 2. **Landing Page Modernization**
+- **Hero Section**: Professional gradient text with cyan-to-purple colors
+- **Book Description**: 5-6 line description of content and target audience
+- **Book Overview**: 6 feature cards highlighting key benefits
+- **Chapter Cards**: Enhanced with animations and dark mode support
+- **Responsive Design**: Full mobile, tablet, desktop support
+- **Dark Mode**: Complete light/dark theme compatibility
+- **Files Modified**:
+  - `book-source/src/pages/index.tsx` (117 lines)
+  - `book-source/src/pages/index.module.css` (301 lines)
+  - `book-source/src/components/HomepageFeatures/styles.module.css` (89 lines)
+- **Git Commit**: `b7178f5` (feat: landing-page modernize homepage)
+
+#### 3. **Modern Logo Design**
+- **Type**: Geometric design representing AI/Robotics interconnection
+- **Design**: 4 interconnected nodes (AI, Robotics, Physical, Integration)
+- **Colors**: Gradient cyan (#0ea5e9) → purple (#8b5cf6)
+- **Format**: SVG (scalable at any resolution)
+- **Files**:
+  - `book-source/static/img/logo.svg` (200x200)
+  - `book-source/static/img/favicon.svg` (favicon version)
+- **Usage**: Navigation bar, browser tabs, all pages
+- **Git Commits**:
+  - `8b2e9e8` (design: replace logo with modern geometric)
+  - `6205576` (design: add favicon matching modern logo)
+
+#### 4. **Hero Section with Background Image**
+- **Background Image**: `hero-image.png` (5.8 MB, high quality)
+- **Height**: 95vh (95% of viewport) for full-screen impact
+- **Overlay**: Semi-transparent gradient (80-90% opacity)
+  - Light mode: White/blue gradient overlay
+  - Dark mode: Dark gradient overlay
+- **Features**:
+  - Parallax scrolling effect
+  - Full-width background coverage
+  - Centered text content (horizontal & vertical)
+  - Professional, immersive design
+  - Responsive on all devices
+- **Removed**: Animated gradient orb and robot emoji
+- **Git Commits**:
+  - `cec6bb9` (fix: resolve hero image not displaying)
+  - `6aeeddb` (feat: redesign with background image)
+  - `08bb1d0` (feat: increase height to 95vh)
+
+#### 5. **Contribution Guidelines**
+- **File**: `CONTRIBUTING.md` (407 lines)
+- **Covers**: Issue reporting, chapter standards, code examples, frontend/backend guides, workflow, testing
+
+### Color Scheme
+- **Primary Gradient**: Cyan (#0ea5e9) → Purple (#8b5cf6)
+- **Accent Gradient**: Teal (#06b6d4) → Cyan (#0ea5e9)
+- **Text**: Dark on light mode, light on dark mode
+- **Shadows**: Subtle drop shadows with opacity
+
+### Recent Git Commits
+```
+08bb1d0 feat(hero-section): increase height to 95vh for full-screen impact
+cec6bb9 fix: resolve hero image not displaying - rename file and fix path
+6aeeddb feat(hero-section): redesign with background image and remove orb
+6205576 design: add favicon matching modern logo design
+8b2e9e8 design: replace logo with modern geometric design
+b7178f5 feat(landing-page): modernize homepage with custom design
+802ed62 refactor: reorganize book platform to open-source structure
+```
+
+### Files Structure After Updates
+```
+book-source/
+├── static/img/
+│   ├── logo.svg                (200x200, modern geometric)
+│   ├── favicon.svg             (favicon version)
+│   ├── hero-image.png          (5.8 MB, full background)
+│   └── ...other images
+├── src/pages/
+│   ├── index.tsx               (hero section with background)
+│   └── index.module.css        (95vh height, gradients, responsive)
+├── src/components/HomepageFeatures/
+│   └── styles.module.css       (chapter cards with animations)
+└── ...other project files
+```
+
+### Future Documentation Protocol
+All future updates should be added to this CLAUDE.md section rather than creating separate documentation files. Use this format:
+
+```markdown
+#### N. **Feature Name**
+- **Description**: Brief overview
+- **Files**: Files modified/created
+- **Git Commit**: Commit hash
+- **Key Details**: Important implementation notes
+```
+
+### Current Project Status
+✅ Open-source structure (book-source/)
+✅ Modern landing page with hero section
+✅ Professional geometric logo
+✅ Full favicon integration
+✅ 95vh full-screen hero with background
+✅ Responsive design (mobile, tablet, desktop)
+✅ Dark mode support throughout
+✅ Professional contribution guidelines
+✅ MIT licensing
