@@ -11,7 +11,7 @@ import styles from './index.module.css';
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <header className={styles.heroBanner} style={{backgroundImage: `url(/img/hero image.png)`}}>
+    <header className={styles.heroBanner} style={{backgroundImage: `url(/img/hero-image.png)`}}>
       <div className={styles.heroOverlay}></div>
       <div className={styles.heroContent}>
         <div className={styles.heroText}>
