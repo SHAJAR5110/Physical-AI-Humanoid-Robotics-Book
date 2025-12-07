@@ -2640,7 +2640,7 @@ Before deploying VLAs to production:
 - [ ] Force/torque monitoring enabled
 
 **3. Performance:**
-- [ ] Inference latency <50ms (for 10Hz control)
+- [ ] Inference latency less than 50ms (for 10Hz control)
 - [ ] Model quantized for deployment hardware
 - [ ] Resource usage profiled (GPU memory, CPU)
 - [ ] Fallback behaviors for inference failures
@@ -2722,7 +2722,7 @@ Vision-Language-Action models represent the cutting edge of Physical AI, enablin
 
 **Deployment:**
 - Model quantization (INT8) for 3-4x speedup on edge devices
-- Real-time inference optimization (<50ms latency target)
+- Real-time inference optimization (less than 50ms latency target)
 - Hardware benchmarks (Jetson Orin to A100)
 - ROS 2 integration patterns for production systems
 
