@@ -18,7 +18,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: '📖 Chapter 1: Introduction to Physical AI',
-      collapsed: false,
+      collapsed: true,
       items: [
         'intro',
         {
@@ -56,7 +56,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: '🤖 Chapter 2: ROS 2 Fundamentals',
-      collapsed: false,
+      collapsed: true,
       items: [
         'ros2',
         {
@@ -99,7 +99,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: '🎮 Chapter 3: Gazebo Simulation',
-      collapsed: false,
+      collapsed: true,
       items: [
         'gazebo',
         {
@@ -142,7 +142,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: '⚙️ Chapter 4: NVIDIA Isaac Platform',
-      collapsed: false,
+      collapsed: true,
       items: [
         'isaac',
         {
@@ -185,7 +185,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: '🧠 Chapter 5: Vision-Language-Action Models',
-      collapsed: false,
+      collapsed: true,
       items: [
         'vla',
         {
@@ -223,7 +223,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: '🏗️ Chapter 6: Capstone Project',
-      collapsed: false,
+      collapsed: true,
       items: [
         'capstone',
         {
