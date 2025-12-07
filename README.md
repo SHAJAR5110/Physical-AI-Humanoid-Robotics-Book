@@ -191,38 +191,65 @@ Profiles
 
 ```
 Physical-AI-and-Humanoid-Robotics/
-├── Ai-and-Humanoid-Robotics-Book/        # Frontend (Docusaurus + React)
-│   ├── docs/                             # Book chapters (6 chapters, 17K+ words)
+├── book-source/                          # MAIN: Frontend (Docusaurus + React)
+│   ├── docs/                             # Book chapters (6 chapters, 17.5K+ words)
+│   │   ├── 01_intro.md                  # Physical AI Fundamentals
+│   │   ├── 02_ros2.md                   # ROS 2 Fundamentals
+│   │   ├── 03_gazebo.md                 # Gazebo Simulation
+│   │   ├── 04_isaac.md                  # NVIDIA Isaac Platform
+│   │   ├── 05_vla.md                    # Vision-Language-Action Models
+│   │   └── 06_capstone.md               # Capstone Project
 │   ├── src/
-│   │   ├── pages/                        # Homepage, auth page
-│   │   ├── components/                   # React components + styles
-│   │   └── hooks/                        # useAuth custom hook
-│   ├── docusaurus.config.ts              # Site configuration
-│   └── sidebars.ts                       # Navigation structure
+│   │   ├── pages/                       # Homepage, auth page
+│   │   ├── components/                  # React components + styles
+│   │   ├── hooks/                       # useAuth custom hook
+│   │   └── css/                         # Styling and theming
+│   ├── static/                          # Images and assets
+│   ├── docusaurus.config.ts             # Site configuration
+│   ├── sidebars.ts                      # Navigation structure
+│   ├── tailwind.config.js               # Tailwind CSS config
+│   ├── package.json                     # Dependencies
+│   ├── README.md                        # book-source specific docs
+│   └── LICENSE                          # MIT License
 │
 ├── backend/                              # Backend (FastAPI)
 │   ├── src/
-│   │   ├── models/                       # SQLAlchemy ORM models
-│   │   ├── services/                     # Business logic
-│   │   ├── api/routes/                   # API endpoints
-│   │   ├── database/                     # DB connection & session
-│   │   ├── schemas/                      # Pydantic request/response
-│   │   └── config/                       # Configuration
-│   └── main.py                           # FastAPI app entry point
+│   │   ├── models/                      # SQLAlchemy ORM models
+│   │   ├── services/                    # Business logic
+│   │   ├── api/routes/                  # API endpoints
+│   │   ├── database/                    # DB connection & session
+│   │   ├── schemas/                     # Pydantic request/response
+│   │   └── config/                      # Configuration
+│   ├── tests/                           # Unit and integration tests
+│   ├── main.py                          # FastAPI app entry point
+│   └── requirements.txt                 # Python dependencies
 │
-├── specs/001-mvp-features/               # SDD artifacts
-│   ├── spec.md                           # Requirements specification
-│   ├── plan.md                           # Implementation plan
-│   └── tasks.md                          # 120 MVP tasks
+├── specs/001-mvp-features/              # SDD artifacts
+│   ├── spec.md                          # Requirements specification
+│   ├── plan.md                          # Implementation plan
+│   └── tasks.md                         # 120 MVP tasks
 │
-├── .specify/                             # SDD templates & scripts
-│   └── memory/constitution.md            # Project principles
+├── .specify/                            # SDD templates & scripts
+│   ├── commands/                        # Custom slash commands
+│   ├── memory/constitution.md           # Project principles
+│   ├── templates/                       # Specification templates
+│   └── scripts/                         # Build and utility scripts
 │
-├── history/                              # Audit trail
-│   ├── prompts/                          # Prompt History Records
-│   └── adr/                              # Architecture Decision Records
+├── history/                             # Audit trail
+│   ├── prompts/                         # Prompt History Records
+│   └── adr/                             # Architecture Decision Records
 │
-└── HACKATHON_DELIVERABLES.md            # This file
+├── .claude/                             # Claude AI configuration
+│   ├── commands/                        # Custom commands
+│   └── instructions/                    # Project instructions
+│
+├── .github/                             # GitHub configuration
+│   └── workflows/                       # CI/CD automation
+│
+├── CONTRIBUTING.md                      # Contribution guidelines
+├── CLAUDE.md                            # Claude Code instructions
+├── README.md                            # Main project documentation
+└── HACKATHON_DELIVERABLES.md           # Deliverables summary
 ```
 
 ---
