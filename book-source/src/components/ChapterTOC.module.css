@@ -1,0 +1,218 @@
+.tocContainer {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  padding: 1.5rem;
+  max-width: 280px;
+  position: sticky;
+  top: 100px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+}
+
+html[data-theme='dark'] .tocContainer {
+  background: #2d2d3d;
+  border-color: #444;
+}
+
+.tocHeader {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #0ea5e9;
+}
+
+.tocHeader h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+html[data-theme='dark'] .tocHeader h3 {
+  color: #fff;
+}
+
+.tocSubtitle {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+html[data-theme='dark'] .tocSubtitle {
+  color: #aaa;
+}
+
+.chaptersList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.chapterItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.chapterButton {
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.75rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+html[data-theme='dark'] .chapterButton {
+  border-color: #444;
+  color: #fff;
+}
+
+.chapterButton:hover {
+  background: #f0f9ff;
+  border-color: #0ea5e9;
+  color: #0ea5e9;
+}
+
+html[data-theme='dark'] .chapterButton:hover {
+  background: #3a3a4d;
+  border-color: #06b6d4;
+  color: #06b6d4;
+}
+
+.chapterNumber {
+  display: inline-block;
+  min-width: 45px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #0ea5e9;
+}
+
+html[data-theme='dark'] .chapterNumber {
+  color: #06b6d4;
+}
+
+.chapterTitle {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.toggleIcon {
+  display: inline-block;
+  font-size: 0.7rem;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.headingsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+  padding-left: 0.5rem;
+  border-left: 2px solid #0ea5e9;
+  margin-left: 0.75rem;
+}
+
+.headingItem {
+  background: transparent;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+  color: #555;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+html[data-theme='dark'] .headingItem {
+  color: #bbb;
+}
+
+.headingItem:hover {
+  background: #f0f9ff;
+  color: #0ea5e9;
+  padding-left: 1rem;
+}
+
+html[data-theme='dark'] .headingItem:hover {
+  background: #3a3a4d;
+  color: #06b6d4;
+}
+
+.level2 {
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+.level3 {
+  font-weight: 500;
+  margin-left: 1rem;
+  color: #666;
+}
+
+html[data-theme='dark'] .level3 {
+  color: #aaa;
+}
+
+/* Scrollbar styling */
+.tocContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tocContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tocContainer::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.tocContainer::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+html[data-theme='dark'] .tocContainer::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+html[data-theme='dark'] .tocContainer::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1440px) {
+  .tocContainer {
+    max-width: 250px;
+  }
+
+  .chapterButton {
+    font-size: 0.85rem;
+    padding: 0.6rem;
+  }
+
+  .headingItem {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .tocContainer {
+    display: none;
+  }
+}
