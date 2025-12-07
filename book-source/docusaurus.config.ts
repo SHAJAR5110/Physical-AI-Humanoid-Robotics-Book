@@ -88,12 +88,6 @@ const config: Config = {
           label: 'Read the Book',
         },
         {
-          to: '/auth',
-          label: '🔐 Sign In',
-          position: 'right',
-          className: 'navbar-signin-button',
-        },
-        {
           href: 'https://github.com/SHAJAR5110/Physical-AI-Humanoid-Robotics-Book',
           label: 'GitHub',
           position: 'right',

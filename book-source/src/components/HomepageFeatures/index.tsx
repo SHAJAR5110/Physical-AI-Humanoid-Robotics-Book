@@ -24,7 +24,7 @@ const ChapterList: ChapterItem[] = [
         intelligent autonomous systems.
       </>
     ),
-    icon: '🤖',
+    icon: '',
   },
   {
     id: 'ros2',
@@ -119,7 +119,7 @@ export default function HomepageFeatures(): ReactNode {
     <section className={styles.features}>
       <div className="container">
         <div className="text--center margin-bottom--xl">
-          <Heading as="h2">📖 Complete 6-Chapter Textbook</Heading>
+          <Heading as="h2">Complete 6-Chapter Textbook</Heading>
           <p style={{fontSize: '18px', marginTop: '10px'}}>
             From Physical AI fundamentals to end-to-end robotic systems.
             15,000+ words with 30+ code examples.

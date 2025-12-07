@@ -66,7 +66,7 @@ The book covers 6 comprehensive chapters with 17,500+ words of content, 45+ prac
 ### Backend Stack
 - **Framework**: FastAPI (Python)
 - **Database**: SQLAlchemy ORM with PostgreSQL
-- **Authentication**: JWT + bcrypt + SHA256
+- **Authentication**: Supabase (managed auth + JWT)
 - **Schema Validation**: Pydantic
 - **API Style**: RESTful
 
@@ -169,9 +169,10 @@ Physical-AI-and-Humanoid-Robotics/
 
 ### Authentication System
 - **Signup**: Create account with profile customization (OS, GPU, experience level)
-- **Signin**: Email/password authentication with session tokens
-- **Session Management**: 24-hour token expiration, automatic cleanup
-- **Security**: bcrypt password hashing, SHA256 token hashing, JWT validation
+- **Signin**: Email/password authentication via Supabase
+- **Session Management**: JWT tokens with automatic expiration
+- **Security**: Supabase managed bcrypt hashing, industry-standard JWT, Row Level Security
+- **Setup**: See [SUPABASE_SETUP.md](./SUPABASE_SETUP.md) for configuration instructions
 
 ### Book Platform
 - **6 Comprehensive Chapters**: 17,500+ words of content

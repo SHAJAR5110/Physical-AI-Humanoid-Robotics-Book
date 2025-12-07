@@ -30,12 +30,12 @@ function HomepageHeader() {
             <Link
               className={clsx('button', styles.primaryButton)}
               to="/docs/intro">
-              📚 Start Reading the Book
+               Start Reading the Book
             </Link>
             <Link
               className={clsx('button', styles.secondaryButton)}
               to="/docs/intro">
-              🚀 Explore All Chapters
+             Explore All Chapters
             </Link>
           </div>
         </div>
@@ -50,7 +50,7 @@ function BookOverview() {
       <div className="container">
         <div className={styles.overviewContent}>
           <div className={styles.overviewItem}>
-            <div className={styles.overviewIcon}>📖</div>
+            <div className={styles.overviewIcon}></div>
             <h3>6 Comprehensive Chapters</h3>
             <p>17,500+ words of in-depth content covering theory, implementation, and best practices</p>
           </div>
