@@ -11,7 +11,8 @@ import styles from './index.module.css';
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <header className={styles.heroBanner}>
+    <header className={styles.heroBanner} style={{backgroundImage: `url(/img/hero image.png)`}}>
+      <div className={styles.heroOverlay}></div>
       <div className={styles.heroContent}>
         <div className={styles.heroText}>
           <Heading as="h1" className={styles.heroTitle}>
@@ -36,22 +37,6 @@ function HomepageHeader() {
               to="/docs/intro">
               🚀 Explore All Chapters
             </Link>
-          </div>
-        </div>
-        <div className={styles.heroArt}>
-          <div className={styles.gradientOrb}>
-            <svg viewBox="0 0 200 200" className={styles.orbSvg}>
-              <defs>
-                <linearGradient id="orbGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style={{stopColor: '#0ea5e9', stopOpacity: 0.8}} />
-                  <stop offset="100%" style={{stopColor: '#8b5cf6', stopOpacity: 0.8}} />
-                </linearGradient>
-              </defs>
-              <circle cx="100" cy="100" r="80" fill="url(#orbGradient)" />
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#0ea5e9" strokeWidth="2" opacity="0.3" />
-              <circle cx="100" cy="100" r="60" fill="none" stroke="#8b5cf6" strokeWidth="2" opacity="0.2" />
-              <text x="100" y="110" textAnchor="middle" fontSize="48" fill="white" fontWeight="bold">🤖</text>
-            </svg>
           </div>
         </div>
       </div>
