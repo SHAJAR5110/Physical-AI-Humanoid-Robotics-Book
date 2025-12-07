@@ -1490,7 +1490,7 @@ print(f"Max latency: {np.max(latencies):.2f}ms")
 | Jetson AGX Orin (64GB) | 13B params | ~45ms | Humanoid robots |
 | RTX 3090 (24GB) | 65B params | ~15ms | Research, data collection |
 | A100 (80GB) | 175B params | ~8ms | Foundation model training |
-| Edge TPU | <1B params (quantized) | ~5ms | Ultra low-latency gripper control |
+| Edge TPU | less than 1B params (quantized) | ~5ms | Ultra low-latency gripper control |
 
 ### Deployment Patterns with ROS 2
 

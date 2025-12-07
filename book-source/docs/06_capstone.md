@@ -35,13 +35,13 @@ Your deployed system will be evaluated against these quantitative benchmarks:
 
 | Metric | Target | Measurement Method |
 |--------|--------|-------------------|
-| **Object Detection Precision** | >90% | mAP@0.5 on test set of 100 books |
-| **Grasp Success Rate** | >85% | 20 attempts per object category |
-| **Motion Planning Success** | >95% | 100 random valid target poses |
-| **Task Completion Rate** | >80% | 50 natural language instructions |
+| **Object Detection Precision** | greater than 90% | mAP@0.5 on test set of 100 books |
+| **Grasp Success Rate** | greater than 85% | 20 attempts per object category |
+| **Motion Planning Success** | greater than 95% | 100 random valid target poses |
+| **Task Completion Rate** | greater than 80% | 50 natural language instructions |
 | **Safety Violations** | 0 | Collision events, force limit breaches |
-| **Average Task Time** | <60s | Pick-and-place single book |
-| **API Response Time** | <200ms | p95 latency for task requests |
+| **Average Task Time** | less than 60s | Pick-and-place single book |
+| **API Response Time** | less than 200ms | p95 latency for task requests |
 
 These metrics ensure your system is production-ready for real-world deployment.
 

@@ -437,7 +437,7 @@ def generate_launch_description():
 **Performance Metrics:**
 - Baseline CPU stereo: 1-2 FPS @ 1280×720
 - Isaac ROS GPU stereo: 30+ FPS @ 1920×1080
-- Latency: <33ms end-to-end (sensor → point cloud)
+- Latency: less than 33ms end-to-end (sensor → point cloud)
 
 **Object Detection with TensorRT:**
 Isaac ROS integrates seamlessly with NVIDIA TensorRT for optimized deep learning inference:
