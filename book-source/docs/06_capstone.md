@@ -3478,8 +3478,8 @@ class ContinuousLearning:
 | Week | Milestone | Deliverables |
 |------|-----------|--------------|
 | 1-2 | Hardware Setup | Assembled robot, calibrated sensors |
-| 3-4 | Perception Pipeline | Object detection >90% accuracy |
-| 5-6 | Motion Planning | Collision-free planning >95% success |
+| 3-4 | Perception Pipeline | Object detection greater than 90% accuracy |
+| 5-6 | Motion Planning | Collision-free planning greater than 95% success |
 | 7-8 | Task Execution | End-to-end tasks working in simulation |
 | 9-10 | Integration Testing | All subsystems integrated, tests passing |
 | 11-12 | Real Robot Deployment | System running on hardware |
@@ -3505,7 +3505,7 @@ class ContinuousLearning:
 - **Solution**: Increase grip force, use force feedback, improve pose estimation, collect grasp dataset
 
 **Pitfall 5: System Latency**
-- **Problem**: End-to-end latency >200ms affects responsiveness
+- **Problem**: End-to-end latency greater than 200ms affects responsiveness
 - **Solution**: Optimize perception (smaller models), parallelize pipelines, use GPU acceleration
 
 ## Scaling Considerations
@@ -3553,7 +3553,7 @@ You've built a complete, production-ready Physical AI system that:
 
 **Key Achievements:**
 - 30+ production-grade code examples spanning hardware integration, perception, planning, control, testing, and deployment
-- Comprehensive testing suite validating >80% task success rate
+- Comprehensive testing suite validating greater than 80% task success rate
 - Real-world deployment strategy with gradual capability rollout
 - Monitoring and performance tuning for production operation
 

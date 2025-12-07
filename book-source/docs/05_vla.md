@@ -2627,7 +2627,7 @@ print(f"Language Grounding Accuracy: {results['language_grounding']:.2%}")
 Before deploying VLAs to production:
 
 **1. Model Validation:**
-- [ ] Success rate >90% on test set
+- [ ] Success rate greater than 90% on test set
 - [ ] Tested on diverse objects and lighting
 - [ ] Failure modes documented and handled
 - [ ] Uncertainty calibration verified
