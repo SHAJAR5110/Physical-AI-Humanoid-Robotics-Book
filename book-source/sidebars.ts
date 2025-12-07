@@ -20,46 +20,42 @@ const sidebars: SidebarsConfig = {
       label: '📖 Chapter 1: Introduction to Physical AI',
       collapsed: false,
       items: [
-        {
-          type: 'doc',
-          id: 'intro',
-          label: '📌 Chapter Overview'
-        },
+        'intro',
         {
           type: 'category',
           label: 'What is Physical AI?',
           collapsed: true,
-          items: []
+          items: ['intro']
         },
         {
           type: 'category',
           label: 'Why Physical AI Matters',
           collapsed: true,
-          items: []
+          items: ['intro']
         },
         {
           type: 'category',
           label: 'Historical Context',
           collapsed: true,
-          items: []
+          items: ['intro']
         },
         {
           type: 'category',
           label: 'Key Technologies in Physical AI',
           collapsed: true,
-          items: []
+          items: ['intro']
         },
         {
           type: 'category',
           label: 'Course Overview & Learning Outcomes',
           collapsed: true,
-          items: []
+          items: ['intro']
         },
         {
           type: 'category',
           label: 'How to Use This Book',
           collapsed: true,
-          items: []
+          items: ['intro']
         },
       ]
     },
@@ -68,52 +64,48 @@ const sidebars: SidebarsConfig = {
       label: '🤖 Chapter 2: ROS 2 Fundamentals',
       collapsed: false,
       items: [
-        {
-          type: 'doc',
-          id: 'ros2',
-          label: '📌 Chapter Overview'
-        },
+        'ros2',
         {
           type: 'category',
           label: 'What is ROS 2?',
           collapsed: true,
-          items: []
+          items: ['ros2']
         },
         {
           type: 'category',
           label: 'Architecture Overview',
           collapsed: true,
-          items: []
+          items: ['ros2']
         },
         {
           type: 'category',
           label: 'Installation & Setup',
           collapsed: true,
-          items: []
+          items: ['ros2']
         },
         {
           type: 'category',
           label: 'Your First ROS 2 Program',
           collapsed: true,
-          items: []
+          items: ['ros2']
         },
         {
           type: 'category',
           label: 'Common Tools',
           collapsed: true,
-          items: []
+          items: ['ros2']
         },
         {
           type: 'category',
           label: 'Best Practices',
           collapsed: true,
-          items: []
+          items: ['ros2']
         },
         {
           type: 'category',
           label: 'Debugging & Troubleshooting',
           collapsed: true,
-          items: []
+          items: ['ros2']
         },
       ]
     },
@@ -122,52 +114,48 @@ const sidebars: SidebarsConfig = {
       label: '🎮 Chapter 3: Gazebo Simulation',
       collapsed: false,
       items: [
-        {
-          type: 'doc',
-          id: 'gazebo',
-          label: '📌 Chapter Overview'
-        },
+        'gazebo',
         {
           type: 'category',
           label: 'Introduction to Gazebo',
           collapsed: true,
-          items: []
+          items: ['gazebo']
         },
         {
           type: 'category',
           label: 'Installation',
           collapsed: true,
-          items: []
+          items: ['gazebo']
         },
         {
           type: 'category',
           label: 'Basic Concepts',
           collapsed: true,
-          items: []
+          items: ['gazebo']
         },
         {
           type: 'category',
           label: 'Plugins for ROS 2',
           collapsed: true,
-          items: []
+          items: ['gazebo']
         },
         {
           type: 'category',
           label: 'Running Simulations',
           collapsed: true,
-          items: []
+          items: ['gazebo']
         },
         {
           type: 'category',
           label: 'Best Practices',
           collapsed: true,
-          items: []
+          items: ['gazebo']
         },
         {
           type: 'category',
           label: 'Troubleshooting',
           collapsed: true,
-          items: []
+          items: ['gazebo']
         },
       ]
     },
@@ -176,52 +164,48 @@ const sidebars: SidebarsConfig = {
       label: '⚙️ Chapter 4: NVIDIA Isaac Platform',
       collapsed: false,
       items: [
-        {
-          type: 'doc',
-          id: 'isaac',
-          label: '📌 Chapter Overview'
-        },
+        'isaac',
         {
           type: 'category',
           label: 'Introduction to Isaac',
           collapsed: true,
-          items: []
+          items: ['isaac']
         },
         {
           type: 'category',
           label: 'Isaac Sim in Detail',
           collapsed: true,
-          items: []
+          items: ['isaac']
         },
         {
           type: 'category',
           label: 'Isaac ROS 2 Integration',
           collapsed: true,
-          items: []
+          items: ['isaac']
         },
         {
           type: 'category',
           label: 'Vision Perception Stack',
           collapsed: true,
-          items: []
+          items: ['isaac']
         },
         {
           type: 'category',
           label: 'Motion Planning',
           collapsed: true,
-          items: []
+          items: ['isaac']
         },
         {
           type: 'category',
           label: 'Best Practices',
           collapsed: true,
-          items: []
+          items: ['isaac']
         },
         {
           type: 'category',
           label: 'Real-World Deployment',
           collapsed: true,
-          items: []
+          items: ['isaac']
         },
       ]
     },
@@ -230,46 +214,42 @@ const sidebars: SidebarsConfig = {
       label: '🧠 Chapter 5: Vision-Language-Action Models',
       collapsed: false,
       items: [
-        {
-          type: 'doc',
-          id: 'vla',
-          label: '📌 Chapter Overview'
-        },
+        'vla',
         {
           type: 'category',
           label: 'Foundation Models for Robotics',
           collapsed: true,
-          items: []
+          items: ['vla']
         },
         {
           type: 'category',
           label: 'VLA Architecture Deep Dive',
           collapsed: true,
-          items: []
+          items: ['vla']
         },
         {
           type: 'category',
           label: 'Training Vision-Language-Action Models',
           collapsed: true,
-          items: []
+          items: ['vla']
         },
         {
           type: 'category',
           label: 'Deployment and Inference',
           collapsed: true,
-          items: []
+          items: ['vla']
         },
         {
           type: 'category',
           label: 'Real-World Examples',
           collapsed: true,
-          items: []
+          items: ['vla']
         },
         {
           type: 'category',
           label: 'Best Practices',
           collapsed: true,
-          items: []
+          items: ['vla']
         },
       ]
     },
@@ -278,58 +258,54 @@ const sidebars: SidebarsConfig = {
       label: '🏗️ Chapter 6: Capstone Project',
       collapsed: false,
       items: [
-        {
-          type: 'doc',
-          id: 'capstone',
-          label: '📌 Chapter Overview'
-        },
+        'capstone',
         {
           type: 'category',
           label: 'Project Overview',
           collapsed: true,
-          items: []
+          items: ['capstone']
         },
         {
           type: 'category',
           label: 'System Architecture',
           collapsed: true,
-          items: []
+          items: ['capstone']
         },
         {
           type: 'category',
           label: 'Hardware Integration',
           collapsed: true,
-          items: []
+          items: ['capstone']
         },
         {
           type: 'category',
           label: 'Perception Pipeline',
           collapsed: true,
-          items: []
+          items: ['capstone']
         },
         {
           type: 'category',
           label: 'Planning and Control',
           collapsed: true,
-          items: []
+          items: ['capstone']
         },
         {
           type: 'category',
           label: 'Integration and Testing',
           collapsed: true,
-          items: []
+          items: ['capstone']
         },
         {
           type: 'category',
           label: 'Deployment to Hardware',
           collapsed: true,
-          items: []
+          items: ['capstone']
         },
         {
           type: 'category',
           label: 'Advanced Enhancements',
           collapsed: true,
-          items: []
+          items: ['capstone']
         },
       ]
     },
