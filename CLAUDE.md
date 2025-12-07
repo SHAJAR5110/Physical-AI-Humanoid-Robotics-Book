@@ -318,6 +318,24 @@ All future updates should be added to this CLAUDE.md section rather than creatin
 - **Key Details**: Important implementation notes
 ```
 
+### Deployment Strategy
+- **Frontend (book-source)**: Deploy to Vercel (static site hosting)
+- **Backend (FastAPI)**: Deploy to Railway, Heroku, or similar
+- **Database**: PostgreSQL (Heroku Postgres or external service)
+- **No Docker**: Not needed for Vercel deployment
+- **Frontend Build**: `npm run build` in book-source/
+- **Backend Requirements**: `requirements.txt` for pip install
+
+### Deployment Checklist
+- [ ] Build frontend: `cd book-source && npm run build`
+- [ ] Connect book-source/ to Vercel
+- [ ] Deploy backend to Railway/Heroku
+- [ ] Update `REACT_APP_API_BASE_URL` environment variable
+- [ ] Set up PostgreSQL database
+- [ ] Configure environment variables (.env)
+- [ ] Test endpoints integration
+- [ ] Monitor logs in Vercel dashboard
+
 ### Current Project Status
 ✅ Open-source structure (book-source/)
 ✅ Modern landing page with hero section
@@ -328,3 +346,4 @@ All future updates should be added to this CLAUDE.md section rather than creatin
 ✅ Dark mode support throughout
 ✅ Professional contribution guidelines
 ✅ MIT licensing
+✅ No Docker (uses Vercel for deployment)
