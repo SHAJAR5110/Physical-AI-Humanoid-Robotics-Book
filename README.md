@@ -35,7 +35,6 @@ The book covers 6 comprehensive chapters with 17,500+ words of content, 45+ prac
 
 ### Book Content & Platform
 - ✅ 6 comprehensive chapters with 17,500+ words
-- ✅ 45+ practical code examples in Python, YAML, and JSON
 - ✅ Professional Docusaurus 3.9.2 documentation platform
 - ✅ Modern, responsive design with dark mode support
 - ✅ Interactive chapter navigation with sidebar menu
@@ -63,38 +62,6 @@ The book covers 6 comprehensive chapters with 17,500+ words of content, 45+ prac
 - **Styling**: CSS Modules with dark mode support
 - **API Integration**: Fetch API with environment variables
 
-### Backend Stack
-- **Framework**: FastAPI (Python)
-- **Database**: SQLAlchemy ORM with PostgreSQL
-- **Authentication**: Supabase (managed auth + JWT)
-- **Schema Validation**: Pydantic
-- **API Style**: RESTful
-
-### Database Schema
-```
-Users
-├── id (PK)
-├── email (UNIQUE)
-├── password_hash
-├── name
-└── created_at
-
-Sessions
-├── id (PK)
-├── user_id (FK)
-├── token_hash (SHA256)
-├── expires_at
-└── created_at
-
-Profiles
-├── id (PK)
-├── user_id (FK)
-├── os (linux|macos|windows)
-├── gpu (optional)
-├── experience_level (beginner|intermediate|advanced)
-├── robotics_background (boolean)
-└── updated_at
-```
 
 ---
 
@@ -122,18 +89,6 @@ Physical-AI-and-Humanoid-Robotics/
 │   ├── package.json                     # Dependencies
 │   ├── README.md                        # book-source specific docs
 │   └── LICENSE                          # MIT License
-│
-├── backend/                              # Backend (FastAPI)
-│   ├── src/
-│   │   ├── models/                      # SQLAlchemy ORM models
-│   │   ├── services/                    # Business logic
-│   │   ├── api/routes/                  # API endpoints
-│   │   ├── database/                    # DB connection & session
-│   │   ├── schemas/                     # Pydantic request/response
-│   │   └── config/                      # Configuration
-│   ├── tests/                           # Unit and integration tests
-│   ├── main.py                          # FastAPI app entry point
-│   └── requirements.txt                 # Python dependencies
 │
 ├── specs/001-mvp-features/              # SDD artifacts
 │   ├── spec.md                          # Requirements specification
@@ -167,27 +122,12 @@ Physical-AI-and-Humanoid-Robotics/
 
 ## 🔑 Key Features Implemented
 
-### Authentication System
-- **Signup**: Create account with profile customization (OS, GPU, experience level)
-- **Signin**: Email/password authentication via Supabase
-- **Session Management**: JWT tokens with automatic expiration
-- **Security**: Supabase managed bcrypt hashing, industry-standard JWT, Row Level Security
-- **Setup**: See [SUPABASE_SETUP.md](./SUPABASE_SETUP.md) for configuration instructions
-
 ### Book Platform
 - **6 Comprehensive Chapters**: 17,500+ words of content
 - **45+ Code Examples**: Practical examples in Python, YAML, JSON
 - **Navigation**: Sidebar menu with all chapters
 - **Responsive Design**: Mobile-first CSS with dark mode
 - **Interactive Elements**: Chapter cards with descriptions and icons
-
-### User Experience
-- **Persistent Sessions**: localStorage-based session persistence
-- **Error Handling**: Clear error messages for validation failures
-- **Loading States**: Visual feedback during API calls
-- **Form Validation**: Email, password strength, required fields
-- **Auto-redirect**: Users directed to book after authentication
-
 ---
 
 ## 📊 Project Metrics
@@ -204,32 +144,11 @@ Physical-AI-and-Humanoid-Robotics/
 
 ---
 
-## 🧪 Testing & Quality
-
-### Implemented
-- ✅ Type safety with TypeScript throughout
-- ✅ Pydantic schema validation on backend
-- ✅ Error handling in all API endpoints
-- ✅ Form validation on frontend
-- ✅ Password strength requirements
-- ✅ Email format validation
-- ✅ Session expiry validation
-
-### Planned (Phase 9-10)
-- End-to-end integration tests
-- API endpoint tests
-- Authentication flow tests
-- Performance testing
-
----
-
 ## 🚀 Getting Started
 
 ### Prerequisites
 ```bash
 Node.js 18+
-Python 3.9+
-PostgreSQL 12+
 ```
 
 ### Frontend Setup
@@ -238,31 +157,6 @@ cd book-source
 npm install
 npm run start  # Dev server at http://localhost:3000
 ```
-
-### Backend Setup
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-python main.py  # Server at http://localhost:8000
-```
-
-### Environment Variables
-Create `.env` file in project root:
-```
-REACT_APP_API_BASE_URL=http://localhost:8000
-DATABASE_URL=postgresql://user:password@localhost/physicalai
-JWT_SECRET_KEY=your-secret-key-here
-```
-
-```
-
-**Repository**: https://github.com/SHAJAR5110/Physical-AI-Humanoid-Robotics-Book
-**Branch**: 001-mvp-features
-
----
-
 ## 📝 Documentation Artifacts
 
 All design and implementation decisions are documented in:
@@ -279,8 +173,6 @@ All design and implementation decisions are documented in:
 ## ✅ Project Completion Status
 
 - ✅ **Core Content**: Fully developed with comprehensive chapters
-- ✅ **Full Stack**: Frontend (Docusaurus/React) + Backend (FastAPI/SQLAlchemy)
-- ✅ **Authentication**: Complete JWT + bcrypt implementation
 - ✅ **Book Content**: 6 chapters with 17,500+ words and 45+ code examples
 - ✅ **User Interface**: Responsive design with dark mode support
 - ✅ **Documentation**: Comprehensive spec, plan, and tasks
@@ -318,8 +210,3 @@ Planned enhancements include:
 **GitHub**: https://github.com/SHAJAR5110/Physical-AI-Humanoid-Robotics-Book
 **License**: MIT - Contributions welcome
 **How to Contribute**: Check CONTRIBUTING.md for guidelines
-
----
-
-**Last Updated**: 2025-12-07
-**Project Status**: 🟢 Active Development - Core Complete, Expanding Features
