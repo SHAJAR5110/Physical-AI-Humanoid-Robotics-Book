@@ -336,6 +336,28 @@ All future updates should be added to this CLAUDE.md section rather than creatin
 - [ ] Test endpoints integration
 - [ ] Monitor logs in Vercel dashboard
 
+### Sidebar Navigation Structure
+The book uses a hierarchical sidebar navigation with collapsed categories:
+- **Chapters**: 6 main chapters (collapsed by default)
+- **Modules**: Each chapter contains 6-9 modules (topic links)
+- **Navigation**: Click chapter to expand → select module to jump to section
+- **Anchor Links**: Modules use `#heading-anchor` links for direct navigation
+- **User Experience**: Clean sidebar, users choose what to explore
+
+**Implementation Details** (book-source/sidebars.ts):
+- `type: 'category'` for chapters with `collapsed: true`
+- `type: 'link'` for modules pointing to section anchors
+- Each module links directly to markdown heading in chapter
+- Example: `href: '/docs/intro#what-is-physical-ai'`
+
+**Chapter Structure:**
+1. Chapter 1: Introduction to Physical AI (6 modules)
+2. Chapter 2: ROS 2 Fundamentals (7 modules)
+3. Chapter 3: Gazebo Simulation (7 modules)
+4. Chapter 4: NVIDIA Isaac Platform (7 modules)
+5. Chapter 5: Vision-Language-Action Models (6 modules)
+6. Chapter 6: Capstone Project (9 modules)
+
 ### Current Project Status
 ✅ Open-source structure (book-source/)
 ✅ Modern landing page with hero section
@@ -347,3 +369,7 @@ All future updates should be added to this CLAUDE.md section rather than creatin
 ✅ Professional contribution guidelines
 ✅ MIT licensing
 ✅ No Docker (uses Vercel for deployment)
+✅ Sidebar navigation with 6 chapters and 42+ module links
+✅ Chapter modules collapsed by default for clean UI
+✅ Direct anchor links to section content
+✅ All builds successful with zero errors
