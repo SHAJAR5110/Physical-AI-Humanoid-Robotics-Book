@@ -1,0 +1,366 @@
+openapi: 3.0.0
+info:
+  title: RAG Chatbot API
+  description: Q&A chatbot for Physical AI & Humanoid Robotics textbook
+  version: 1.0.0
+  contact:
+    name: Physical AI Team
+  license:
+    name: MIT
+
+servers:
+  - url: https://rag-chatbot-api.onrender.com
+    description: Production
+  - url: http://localhost:8000
+    description: Local development
+
+paths:
+  /api/chat:
+    post:
+      summary: Ask a question and get an answer
+      operationId: askQuestion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatRequest'
+            examples:
+              simple:
+                value:
+                  question: "What is ROS 2?"
+              withSelection:
+                value:
+                  question: "Why use PyTorch here?"
+                  selected_text: "The IsaacLab simulator uses PyTorch for differentiable physics..."
+
+      responses:
+        '200':
+          description: Successful response with answer and sources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatResponse'
+              examples:
+                success:
+                  value:
+                    answer: "ROS 2 is a middleware for robotics that provides publish-subscribe messaging, service calls, and a distributed system architecture. It's the successor to ROS 1 and is designed for real-time, safety-critical applications."
+                    sources:
+                      - chapter: "Chapter 2: ROS 2 Fundamentals"
+                        module: "Module 2.1: What is ROS 2?"
+                        section: "ros-2-overview"
+                        excerpt: "ROS 2 is built on a publish-subscribe architecture..."
+                    confidence: "high"
+                    processing_time_ms: 1850
+
+        '400':
+          description: Bad request (validation error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                validation:
+                  value:
+                    error: "Validation failed"
+                    details: "question must be at least 3 characters"
+
+        '429':
+          description: Too many requests (rate limit exceeded)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                rateLimit:
+                  value:
+                    error: "Rate limit exceeded"
+                    details: "You have exceeded 10 requests per minute. Please wait before asking another question."
+
+        '503':
+          description: Service unavailable (dependency failure)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                unavailable:
+                  value:
+                    error: "Chat service is temporarily unavailable"
+                    details: "Vector database is unreachable. Please try again in a moment."
+
+      x-codeSamples:
+        - lang: bash
+          source: |
+            curl -X POST http://localhost:8000/api/chat \
+              -H "Content-Type: application/json" \
+              -d '{
+                "question": "What is ROS 2?",
+                "selected_text": null
+              }'
+
+        - lang: javascript
+          source: |
+            const response = await fetch('/api/chat', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                question: 'What is ROS 2?'
+              })
+            });
+            const data = await response.json();
+            console.log(data.answer);
+
+  /health:
+    get:
+      summary: Health check endpoint
+      operationId: getHealth
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+              examples:
+                healthy:
+                  value:
+                    status: "healthy"
+                    timestamp: "2025-12-08T23:30:00Z"
+                    dependencies:
+                      sentence_transformers: "loaded"
+                      qdrant: "connected"
+                      groq_api: "available"
+
+        '503':
+          description: Service is unhealthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+              examples:
+                unhealthy:
+                  value:
+                    status: "unhealthy"
+                    timestamp: "2025-12-08T23:30:00Z"
+                    dependencies:
+                      qdrant: "disconnected"
+                      groq_api: "unavailable"
+
+components:
+  schemas:
+    ChatRequest:
+      type: object
+      required:
+        - question
+      properties:
+        question:
+          type: string
+          minLength: 3
+          maxLength: 1000
+          description: "The question to ask about textbook content"
+          example: "What is the difference between topics and services in ROS 2?"
+
+        selected_text:
+          type: string
+          nullable: true
+          maxLength: 5000
+          description: "Optional text selected from the book to provide context"
+          example: "Nodes communicate through topics, which use a publish-subscribe pattern..."
+
+      additionalProperties: false
+
+    ChatResponse:
+      type: object
+      required:
+        - answer
+        - sources
+        - confidence
+        - processing_time_ms
+      properties:
+        answer:
+          type: string
+          minLength: 10
+          maxLength: 2000
+          description: "The AI-generated answer to the question"
+          example: "In ROS 2, topics and services are two different communication patterns..."
+
+        sources:
+          type: array
+          minItems: 1
+          maxItems: 5
+          items:
+            $ref: '#/components/schemas/SourceReference'
+          description: "List of textbook passages used to generate the answer"
+
+        confidence:
+          type: string
+          enum:
+            - high
+            - medium
+            - low
+          description: "Confidence level of the answer based on retrieval quality"
+
+        processing_time_ms:
+          type: integer
+          minimum: 0
+          description: "Time taken to generate the answer in milliseconds"
+          example: 1850
+
+      additionalProperties: false
+
+    SourceReference:
+      type: object
+      required:
+        - chapter
+        - module
+        - section
+        - excerpt
+      properties:
+        chapter:
+          type: string
+          description: "Name of the chapter"
+          example: "Chapter 2: ROS 2 Fundamentals"
+
+        module:
+          type: string
+          description: "Name of the module/section within the chapter"
+          example: "Module 2.1: Topics and Services"
+
+        section:
+          type: string
+          description: "Anchor link to the specific section"
+          example: "ros-2-topics"
+
+        excerpt:
+          type: string
+          description: "The relevant text passage from the book"
+          example: "Topics in ROS 2 use a publish-subscribe pattern where nodes can publish messages to topics or subscribe to receive messages..."
+
+      additionalProperties: false
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - details
+      properties:
+        error:
+          type: string
+          description: "Error type/title"
+          example: "Validation failed"
+
+        details:
+          type: string
+          description: "Detailed error message"
+          example: "question must be at least 3 characters"
+
+      additionalProperties: false
+
+    HealthResponse:
+      type: object
+      required:
+        - status
+        - timestamp
+        - dependencies
+      properties:
+        status:
+          type: string
+          enum:
+            - healthy
+            - unhealthy
+          description: "Overall service health status"
+
+        timestamp:
+          type: string
+          format: date-time
+          description: "ISO 8601 timestamp of health check"
+
+        dependencies:
+          type: object
+          description: "Status of external dependencies"
+          additionalProperties:
+            type: string
+            enum:
+              - loaded
+              - connected
+              - available
+              - disconnected
+              - unavailable
+          example:
+            sentence_transformers: "loaded"
+            qdrant: "connected"
+            groq_api: "available"
+
+      additionalProperties: false
+
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: "API key for authenticated requests (future)"
+
+  responses:
+    BadRequest:
+      description: Bad request - validation failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    TooManyRequests:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    ServiceUnavailable:
+      description: Service temporarily unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+tags:
+  - name: Chat
+    description: Question answering endpoints
+  - name: Health
+    description: Service status endpoints
+
+x-responseHeaders:
+  RateLimit-Limit:
+    description: Total number of requests allowed per minute
+    schema:
+      type: integer
+      example: 10
+
+  RateLimit-Remaining:
+    description: Number of requests remaining in current window
+    schema:
+      type: integer
+      example: 7
+
+  RateLimit-Reset:
+    description: Unix timestamp when rate limit resets
+    schema:
+      type: integer
+      example: 1702084200
+
+x-backendServices:
+  - name: embedding-service
+    description: Sentence-Transformers for embedding questions
+    latency_ms: "50-100"
+
+  - name: retrieval-service
+    description: Qdrant Cloud for semantic search
+    latency_ms: "100-300"
+
+  - name: generation-service
+    description: Groq API for LLM inference
+    latency_ms: "500-2000"
+
+  - name: confidence-service
+    description: Confidence scoring based on retrieval quality
+    latency_ms: "50"
