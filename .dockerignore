@@ -1,0 +1,46 @@
+# Docker build ignore file - Root level
+
+# Git
+.git
+.gitignore
+.github
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+.venv
+venv
+.Python
+
+# Development
+.vscode
+.idea
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation
+*.md
+docs/
+
+# Book source (frontend)
+book-source/
+book-source/node_modules
+
+# Specs and history
+specs/
+history/
+.specify/
+
+# Build artifacts
+dist/
+build/
+
+# IDE
+.eslintcache
+.env.local
+
+# Only deploy backend
