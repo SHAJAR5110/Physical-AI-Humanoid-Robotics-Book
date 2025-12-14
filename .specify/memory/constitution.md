@@ -1,14 +1,19 @@
 # Physical AI Book Constitution
 
 <!--
-  Sync Impact Report (v1.1.0)
-  Version: 1.0.0 → 1.1.0 (MINOR: Added RAG Chatbot Quality principle)
-  Stage: Constitution amendment for RAG chatbot integration
-  Modified Principles: None (existing principles preserved)
-  Added Sections: VI. RAG Chatbot Quality (new principle with performance, reliability, and UX requirements)
+  Sync Impact Report (v1.1.2)
+  Version: 1.1.1 → 1.1.2 (PATCH: Replaced Claude API with Groq API for embeddings and LLM inference to reduce costs and improve latency)
+  Stage: Constitution amendment for AI service provider switch
+  Modified Principles: None (existing principles preserved; principle VI still applies with Groq)
+  Modified Sections:
+    - Tech Stack Decision (Claude API → Groq API)
+    - RAG Chatbot Architecture (Claude API → Groq for embeddings and inference; verified performance targets remain achievable)
   Removed Sections: None
-  Templates Updated: ✅ Plan, Tasks, Spec templates (all align with new principle)
-  Follow-up TODOs: None
+  Templates Updated: None required (principles and SLOs remain unchanged; Groq API is drop-in replacement for Claude API calls)
+  Follow-up TODOs:
+    - Validate: Groq API latency targets meet p95 ≤ 3s chatbot SLO (benchmark before MVP launch)
+    - Verify: Groq embedding dimensions match Qdrant Free Tier schema (typically 384 or 768 dims; Qdrant supports variable)
+    - Plan: Cost comparison post-hackathon (Groq pay-as-you-go vs. Claude API; evaluate long-term cost per request)
 -->
 
 ## Core Principles
@@ -108,29 +113,38 @@ The RAG chatbot MUST deliver fast, accurate, and reliable answers to learner que
 ### Tech Stack Decision
 
 - **Frontend**: Docusaurus (React-based static site with dynamic client-side features)
-- **Backend**: FastAPI (Python, fast iteration, great docs, integrates with Claude SDK)
+- **Backend**: FastAPI (Python, fast iteration, great docs, integrates with Groq SDK)
 - **Search/Retrieval**: Qdrant (vector database for RAG embeddings)
 - **Database**: Neon Postgres (managed, free tier, scales with usage)
 - **Auth**: BetterAuth (third-party, reduces custom code)
-- **AI Services**: Claude API (model calls for personalization and tutoring)
+- **AI Services**: Groq API (model calls for embeddings, personalization, and tutoring; fast inference via Groq's LPU architecture)
 - **Hosting**: Vercel (frontend), Railway or Heroku (backend, free tier)
 - **Deployment**: GitHub Actions (CI/CD for content builds and API)
 
-**Rationale**: Stack balances ease-of-use, free/affordable hosting for hackathon, and alignment with future operations.
+**Rationale**: Stack balances ease-of-use, free/affordable hosting for hackathon, and low-cost inference via Groq. Groq API offers faster latency and competitive pricing compared to Claude API, reducing operational costs while maintaining performance SLOs.
 
 ### RAG Chatbot Architecture
 
-1. **Ingestion**: On chapter publish, extract text and embed using Claude embeddings API
-2. **Storage**: Store embeddings in Qdrant; metadata (chapter, author) in Postgres
-3. **Query**: User question → embed → Qdrant search → retrieve context → Claude API chat with system prompt (include user profile and selected text)
-4. **Constraints**: Context window max ~8k tokens; prioritize chapter relevance over global search
-5. **Retrieval Quality**: Return top-k results ranked by cosine similarity; apply similarity threshold (≥ 0.85) before passing to LLM
-6. **Fallback Strategy**: If retrieval returns no results or similarity < threshold, return friendly error message; suggest rephrasing or browsing chapters
+**Tech Stack**:
+- **Embedding & LLM**: Groq API (embeddings and chat inference via LPU-accelerated models)
+- **Vector Database**: Qdrant Cloud (Free Tier for MVP; scales post-hackathon)
+- **Backend**: FastAPI with Groq SDK (Python 3.9+)
+- **Agents/Orchestration**: OpenAI Agents API with Groq Toolkit or native FastAPI task queues (TBD based on agent complexity)
+- **Database**: Neon Postgres for metadata and user context
+- **Frontend**: React component embedded in Docusaurus book
+
+**Retrieval Flow**:
+1. **Ingestion**: On chapter publish, extract text chunks → embed using Groq API → store embeddings in Qdrant Cloud + metadata in Postgres
+2. **Query**: User question → embed (Groq API) → semantic search in Qdrant → retrieve top-k (≥ 0.85 cosine similarity) → Groq chat API with system prompt (include user profile, chapter context, retrieved chunks)
+3. **Constraints**: Context window max ~6k tokens; prioritize chapter relevance over global search; apply exponential backoff for API retries
+4. **Retrieval Quality**: Return top-3 results ranked by cosine similarity; enforce ≥ 0.85 threshold before passing to LLM
+5. **Fallback Strategy**: If retrieval fails or similarity < threshold, return graceful error (e.g., "I couldn't find relevant material. Try rephrasing or explore the chapter directly."); never hallucinate answers
+6. **Qdrant Cloud Free Tier Constraints**: 1 GB storage, 10k embeddings limit; optimize chunk sizes to stay within limit during MVP; plan migration post-hackathon
 
 ### Personalization Flow
 
 1. **User Profile**: BetterAuth captures (background, experience, language)
-2. **On-Demand Rewrite**: User clicks "Personalize" → Backend calls Claude Code agent/skill with (chapter text, user profile) → Stores result in cache (30-day TTL)
+2. **On-Demand Rewrite**: User clicks "Personalize" → Backend calls Groq API with (chapter text, user profile) via personalization skill → Stores result in cache (30-day TTL)
 3. **Caching**: Rewritten versions cached to avoid re-running for same user/chapter pair
 4. **Fallback**: If personalization fails, serve original content
 
@@ -225,4 +239,4 @@ Constitution follows semantic versioning:
 
 ---
 
-**Version**: 1.1.0 | **Ratified**: 2025-12-06 | **Last Amended**: 2025-12-08
+**Version**: 1.1.2 | **Ratified**: 2025-12-06 | **Last Amended**: 2025-12-14
