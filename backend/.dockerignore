@@ -1,0 +1,42 @@
+# Docker build ignore file
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info
+dist
+build
+.venv
+venv
+
+# Testing
+.pytest_cache
+.coverage
+htmlcov
+.tox
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.env
+
+# Git
+.git
+.gitignore
+
+# Other
+.github
+tests
+*.md
+uv.lock
+validate_phase2.py
+
