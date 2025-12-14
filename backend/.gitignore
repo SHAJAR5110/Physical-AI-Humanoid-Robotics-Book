@@ -31,10 +31,13 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Virtual environments
+# Virtual environments (DO NOT COMMIT - saves 2-3 GB)
 .venv/
+.venv
 venv/
+venv
 env/
+env
 ENV/
 env.bak/
 venv.bak/
