@@ -14,10 +14,15 @@ class Settings(BaseSettings):
     environment: str = "development"
     debug: bool = True
 
+    @property
+    def is_production(self) -> bool:
+        """Check if running in production."""
+        return self.environment.lower() in ("production", "prod")
+
     # Server
     host: str = "0.0.0.0"
     port: int = 8000
-    reload: bool = True
+    reload: bool = False  # Disable in production (Render uses startCommand)
 
     # Logging
     log_level: str = "debug"
