@@ -55,8 +55,9 @@ const ChatBot: React.FC = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // API base URL - defaults to localhost for development
-  // For production, update to your deployed backend URL
+  // API base URL - connects to backend
+  // For local development: http://localhost:8000
+  // For production: update this URL to your deployed backend
   const API_BASE_URL = 'http://localhost:8000';
 
   // Handle text selection in page
@@ -92,9 +93,9 @@ const ChatBot: React.FC = () => {
     }, 2000);
 
     try {
-      const payload: ChatRequest = {
-        question: question.trim(),
-        selected_text: selectedText.trim() || undefined,
+      const payload = {
+        query: question.trim(),
+        chat_history: [], // Backend expects chat_history array
       };
 
       const res = await fetch(`${API_BASE_URL}/api/chat`, {
@@ -110,8 +111,25 @@ const ChatBot: React.FC = () => {
         throw new Error(errorData.details || 'Failed to get response');
       }
 
-      const data: ChatResponse = await res.json();
-      setResponse(data);
+      const data = await res.json();
+
+      // Map backend response to frontend format
+      // Handle both /ask and /api/chat response formats
+      const sources = (data.sources || []).map((source: any) => ({
+        chapter: source.chapter || 'Unknown',
+        module: source.module || 'Content',
+        section: source.section || 'content',
+        excerpt: source.content || source.excerpt || '',
+        similarity: source.similarity_score || source.similarity,
+      }));
+
+      const formattedResponse: ChatResponse = {
+        answer: data.response || data.answer || '',
+        sources: sources,
+        confidence: (data.confidence || 'medium') as 'high' | 'medium' | 'low',
+        processing_time_ms: data.processing_time_ms || data.query_time_ms || 0,
+      };
+      setResponse(formattedResponse);
       setQuestion(''); // Clear input after successful submission
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred. Please try again.');

@@ -1,9 +1,10 @@
 # RAG Chatbot for Physical AI Textbook - Feature Specification
 
 **Feature ID**: 002-rag-chatbot
-**Status**: Specification
-**Last Updated**: 2025-12-08
+**Status**: Specification (Updated for Constitution v1.1.1 Alignment)
+**Last Updated**: 2025-12-13
 **Owned By**: Physical AI Team
+**Constitutional Alignment**: Constitution v1.1.1 (RAG Chatbot Architecture clarified with Claude API, Qdrant Cloud Free Tier, FastAPI + Claude SDK, OpenAI Agents API reference)
 
 ---
 
@@ -17,9 +18,10 @@ We are building a Retrieval-Augmented Generation (RAG) chatbot embedded in the P
 
 - **Improves Learning Outcomes**: Students can ask follow-up questions instantly without leaving the book
 - **Reduces Cognitive Load**: No need to search external resources or read entire chapters for clarity
-- **Provides Instant Feedback**: Answers appear within 3 seconds with source citations
-- **Scales Affordably**: Free-tier services (Groq, Qdrant, Render) support MVP without infrastructure costs
+- **Provides Instant Feedback**: Answers appear within 3 seconds with source citations powered by Claude API
+- **Scales Affordably**: Free-tier services (Qdrant Cloud, Render) + Claude API support MVP without infrastructure overhead
 - **Builds on Existing Platform**: Integrates seamlessly with Docusaurus-deployed textbook
+- **Reliable & Resilient**: Claude API with exponential backoff ensures graceful error handling; Qdrant Cloud Free Tier sufficient for MVP with optimized chunking strategy
 
 ---
 
@@ -162,13 +164,14 @@ We are building a Retrieval-Augmented Generation (RAG) chatbot embedded in the P
 
 The system MUST:
 - Accept text questions from students
-- Embed questions using sentence-transformers (free, local)
-- Query Qdrant vector database for semantic matches
-- Return top-5 relevant passages ranked by cosine similarity
+- Embed questions using Claude API embeddings (or sentence-transformers as fallback)
+- Query Qdrant Cloud vector database for semantic matches
+- Return top-3 relevant passages ranked by cosine similarity
 - Pass retrieved passages to Claude API for answer synthesis
+- Apply exponential backoff for API retries on transient failures
 - Generate responses within 3 seconds (p95)
 
-**Testable**: Measure latency for 100 random questions; verify p95 ≤ 3 seconds
+**Testable**: Measure latency for 100 random questions; verify p95 ≤ 3 seconds; verify exponential backoff is applied
 
 ---
 
@@ -408,29 +411,57 @@ The system MUST:
 
 ## Assumptions
 
-1. **Embeddings Quality**: Sentence-transformers embeddings are accurate enough for semantic matching (cosine similarity ≥ 0.85 is achievable for relevant passages)
+1. **Embeddings Quality**: Claude API embeddings (or sentence-transformers fallback) are accurate enough for semantic matching (cosine similarity ≥ 0.85 is achievable for relevant passages)
 2. **Book Content Structure**: Markdown chapters follow consistent structure with chapter/module/section headings for reliable source attribution
-3. **LLM Behavior**: Claude API (via Groq) consistently generates concise, accurate answers from retrieved context
-4. **User Expectations**: Students expect answers within 3 seconds (based on web application standards)
-5. **Data Privacy**: No long-term conversation storage is required for MVP (privacy-first approach)
-6. **Free-Tier Sufficiency**: Qdrant Cloud free tier, Groq free tier, and Render free tier can support expected student load
-7. **No Custom Indexing**: Initial index uses extracted markdown content (no additional content creation needed)
+3. **LLM Behavior**: Claude API consistently generates concise, accurate answers from retrieved context
+4. **Claude API Availability**: Claude API embeddings and chat endpoints are available and responsive within SLA; exponential backoff handles transient failures
+5. **Qdrant Cloud Free Tier Capacity**: 10k embeddings limit is sufficient for MVP (3-5 chapters with optimized chunk sizes of 500-1000 tokens)
+6. **User Expectations**: Students expect answers within 3 seconds (based on web application standards)
+7. **Data Privacy**: No long-term conversation storage is required for MVP (privacy-first approach)
+8. **Free-Tier Sufficiency**: Qdrant Cloud free tier and Render free tier can support expected MVP student load; post-MVP scaling documented for future migration
+9. **No Custom Indexing**: Initial index uses extracted markdown content (no additional content creation needed)
+10. **FastAPI Task Queues Sufficient**: MVP uses native FastAPI background tasks for orchestration; OpenAI Agents API reserved for future complexity (post-MVP decision point)
 
 ---
 
 ## Dependencies & Integrations
 
 ### External Services
-- **Claude API** (via Groq): LLM for answer generation
-- **Sentence-Transformers**: Local embedding model (no external API)
-- **Qdrant Cloud**: Vector database for semantic search
-- **Neon Postgres**: Optional database for conversation history (future)
-- **Docusaurus**: Existing book platform for chapter links/navigation
 
-### Book Content
+#### LLM & Embeddings
+- **Claude API** (Anthropic):
+  - Used for: Answer generation via chat completions API
+  - Also used for: Embeddings (via Claude embeddings endpoint)
+  - Fallback: Sentence-Transformers (local, free) if Claude API unavailable
+  - Rate limiting: Implement exponential backoff per API contract
+
+#### Vector Database
+- **Qdrant Cloud (Free Tier)**:
+  - Capacity: 1 GB storage, 10k embeddings limit
+  - Performance: Semantic search with cosine similarity threshold (≥ 0.85)
+  - Constraints: Optimize chunk sizes (~500-1000 tokens per chunk) to fit within 10k embeddings across 3-5 chapters
+  - Scaling: Plan post-MVP migration to paid Qdrant or self-hosted instance
+  - Request rate: 50 requests/second (free tier sufficient for MVP student load)
+
+#### Orchestration (TBD)
+- **OpenAI Agents API** (optional): May be used for task orchestration if complexity requires
+  - Alternative: Native FastAPI background tasks (recommended for MVP simplicity)
+  - Decision point: To be confirmed during planning phase
+  - Current implementation: Use FastAPI task queues for cold start handling and bulk indexing
+
+#### Data Persistence
+- **Neon Postgres** (serverless): Optional for conversation history (future, post-MVP)
+- **Not used in MVP**: Chatbot is stateless; no long-term conversation storage
+
+#### Frontend Platform
+- **Docusaurus**: Existing book platform for chapter links/navigation
+- **Vercel**: Auto-deployment of Docusaurus frontend with React chatbot widget
+
+### Book Content Structure
 - Expects markdown chapters in `/docs/docs/` directory
 - Chapter files follow structure: `Chapter-N.md` with H2 headings for modules
 - Section anchors auto-generated from H3 headings
+- Estimated content: 3-5 chapters, ~40-80 MB total (fits within 10k embeddings limit with optimized chunking)
 
 ---
 
